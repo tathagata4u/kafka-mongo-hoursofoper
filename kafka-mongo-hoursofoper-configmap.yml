@@ -1,0 +1,49 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: kafka-mongo-hoursofoper-configmap
+  namespace: atd-core-platform
+data:
+  dev.kafka.topic : "DHOURSOFOPER"
+  qa.kafka.topic : "QHOURSOFOPER"
+  xat.kafka.topic : "HOURSOFOPER"
+  prod.kafka.topic : "HOURSOFOPER"
+
+  dev.kafka.bootstrap.server.url: lkc-j8o9jp.dom4glyq2pl.us-east1.gcp.confluent.cloud:9092
+  qa.kafka.bootstrap.server.url: kc-j8o9jp.dom4glyq2pl.us-east1.gcp.confluent.cloud:9092
+  xat.kafka.bootstrap.server.url: lkc-j8o9jp.dom4glyq2pl.us-east1.gcp.confluent.cloud:9092
+  prod.kafka.bootstrap.server.url: lkc-y6mn6o.domzpy1yjop.us-east1.gcp.confluent.cloud:9092
+
+  kafka.security.protocol: "SASL_SSL"
+  kafka.sasl.mechanisms: "PLAIN"
+  
+  kafka.group.id: "kafka-mongo-hoursofoper"
+
+  dev.mongodb.database : "DEV_CUSTOMERLOCATIONS"
+  qa.mongodb.database : "QA_CUSTOMERLOCATIONS"
+  xat.mongodb.database : "CUSTOMERLOCATIONS"
+  prod.mongodb.database : "CUSTOMERLOCATIONS"
+
+  mongodb.collection : "DP_LOCATION_HOURS_OF_OPERATION"
+  mongodb.queryfield : "HOURS_OF_OPERATION_ID"
+  mongodb.datefields : "LAST_UPDATE_DATE,CREATION_DATE"
+  
+  timezone.from : "US/Eastern"
+  timezone.to : "UTC"
+  datetime.format : "%Y-%m-%d %H:%M:%S"
+  
+  dev.logging.level : "DEBUG"
+  qa.logging.level : "DEBUG"
+  xat.logging.level : "INFO"
+  prod.logging.level : "INFO"
+  max.retries : "500"
+
+  dev.oracle.table : "XXATDAR.XXATDAR_CMR_HOURS_OF_OPER"
+  qa.oracle.table : "XXATDAR.XXATDAR_CMR_HOURS_OF_OPER"
+  xat.oracle.table : "XXATDAR.XXATDAR_CMR_HOURS_OF_OPER"
+  prod.oracle.table : "XXATDAR.XXATDAR_CMR_HOURS_OF_OPER"
+
+  dev.mongodb.bulksize : "500"
+  qa.mongodb.bulksize : "500"
+  xat.mongodb.bulksize : "500"
+  prod.mongodb.bulksize : "500"

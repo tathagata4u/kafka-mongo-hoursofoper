@@ -1,0 +1,2817 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 513,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 65,
+        "panels": [],
+        "title": "Data Stream Metrics",
+        "type": "row"
+      },
+      {
+        "datasource": "Prometheus",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "blue",
+              "mode": "fixed"
+            },
+            "decimals": 0,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 3,
+          "x": 0,
+          "y": 1
+        },
+        "id": 49,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.2.1",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(consumed_messages_total{job=\"kafka-mongo-hoursofoper\"}[$__range]))",
+            "hide": false,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "B"
+          }
+        ],
+        "title": "Consumed Messages",
+        "type": "stat"
+      },
+      {
+        "datasource": "Prometheus",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "blue",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 20,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "opm"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 4,
+          "x": 3,
+          "y": 1
+        },
+        "id": 23,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "hidden",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(consumed_messages_total{job=\"kafka-mongo-hoursofoper\"}[1m]))",
+            "hide": false,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "B"
+          }
+        ],
+        "title": "Consumed Messages",
+        "type": "timeseries"
+      },
+      {
+        "datasource": "Prometheus",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "red",
+              "mode": "fixed"
+            },
+            "decimals": 0,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 3,
+          "x": 8,
+          "y": 1
+        },
+        "id": 51,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.2.1",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(kafka_errors_total{job=\"kafka-mongo-hoursofoper\"}[$__range]))",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Kafka Errors",
+        "type": "stat"
+      },
+      {
+        "alert": {
+          "alertRuleTags": {},
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  0
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "A",
+                  "1m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "max"
+              },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "keep_state",
+          "for": "1m",
+          "frequency": "15s",
+          "handler": 1,
+          "message": "Kafka errors in kafka-mongo-hoursofoper",
+          "name": "Kafka Errors alert",
+          "noDataState": "no_data",
+          "notifications": [
+            { "name": "Python ETL"}
+          ]
+        },
+        "datasource": "Prometheus",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "red",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "axisSoftMax": 25,
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 20,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "text",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 3,
+          "x": 11,
+          "y": 1
+        },
+        "id": 26,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "hidden",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(kafka_errors_total{job=\"kafka-mongo-hoursofoper\"}[1m]))",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [
+          {
+            "colorMode": "critical",
+            "op": "gt",
+            "value": 0,
+            "visible": true
+          }
+        ],
+        "title": "Kafka Errors",
+        "type": "timeseries"
+      },
+      {
+        "datasource": "Prometheus",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "blue",
+              "mode": "fixed"
+            },
+            "decimals": 0,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "orange",
+                  "value": 50
+                },
+                {
+                  "color": "red",
+                  "value": 100
+                }
+              ]
+            },
+            "unit": "ms"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 4,
+          "x": 15,
+          "y": 1
+        },
+        "id": 58,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.2.1",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(mongodb_latency_sum{service=\"kafka-mongo-hoursofoper\"}[$__range]))/sum(increase(mongodb_latency_count{service=\"kafka-mongo-hoursofoper\"}[$__range]))",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "MongoDB Latency",
+        "type": "stat"
+      },
+      {
+        "alert": {
+          "alertRuleTags": {},
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  100
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "A",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "avg"
+              },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "keep_state",
+          "for": "5m",
+          "frequency": "1m",
+          "handler": 1,
+          "name": "MongoDB Latency alert",
+          "noDataState": "keep_state",
+          "notifications": [
+            { "name": "Python ETL"}
+          ]
+        },
+        "datasource": "Prometheus",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "blue",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "axisSoftMax": 25,
+              "axisSoftMin": 0,
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 20,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "decimals": 0,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "ms"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 5,
+          "x": 19,
+          "y": 1
+        },
+        "id": 59,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "hidden",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "pluginVersion": "8.2.1",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(mongodb_latency_sum{service=\"kafka-mongo-hoursofoper\"}[$__range]))/sum(increase(mongodb_latency_count{service=\"kafka-mongo-hoursofoper\"}[$__range]))",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [
+          {
+            "colorMode": "critical",
+            "op": "gt",
+            "value": 100,
+            "visible": true
+          }
+        ],
+        "title": "MongoDB Latency",
+        "type": "timeseries"
+      },
+      {
+        "datasource": "Prometheus",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "blue",
+              "mode": "fixed"
+            },
+            "decimals": 0,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 3,
+          "x": 0,
+          "y": 6
+        },
+        "id": 48,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.2.1",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(processed_messages_total{job=\"kafka-mongo-hoursofoper\"}[$__range]))",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Processed Messages",
+        "type": "stat"
+      },
+      {
+        "datasource": "Prometheus",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "blue",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 20,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "opm"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 4,
+          "x": 3,
+          "y": 6
+        },
+        "id": 28,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "hidden",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(processed_messages_total{job=\"kafka-mongo-hoursofoper\"}[1m]))",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Processed Messages",
+        "type": "timeseries"
+      },
+      {
+        "datasource": "Prometheus",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "red",
+              "mode": "fixed"
+            },
+            "decimals": 0,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 3,
+          "x": 8,
+          "y": 6
+        },
+        "id": 52,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.2.1",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(processing_errors_total{job=\"kafka-mongo-hoursofoper\"}[$__range]))",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Processing Errors",
+        "type": "stat"
+      },
+      {
+        "alert": {
+          "alertRuleTags": {},
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  0
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "A",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "max"
+              },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "keep_state",
+          "for": "5m",
+          "frequency": "1m",
+          "handler": 1,
+          "message": "Message processing errors in kafka-mongo-hoursofoper",
+          "name": "Message Processing Errors alert",
+          "noDataState": "no_data",
+          "notifications": [
+            { "name": "Python ETL"}
+          ]
+        },
+        "datasource": "Prometheus",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "red",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "axisSoftMax": 25,
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 20,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "text",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 3,
+          "x": 11,
+          "y": 6
+        },
+        "id": 53,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "hidden",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(processing_errors_total{job=\"kafka-mongo-hoursofoper\"}[1m]))",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [
+          {
+            "colorMode": "critical",
+            "op": "gt",
+            "value": 0,
+            "visible": true
+          }
+        ],
+        "title": "Processing Errors",
+        "type": "timeseries"
+      },
+      {
+        "datasource": "Prometheus",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "green",
+              "mode": "fixed"
+            },
+            "decimals": 0,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 15,
+          "y": 6
+        },
+        "id": 54,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.2.1",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(records_inserted_total{job=\"kafka-mongo-hoursofoper\"}[$__range]))",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Total Inserts",
+        "type": "stat"
+      },
+      {
+        "datasource": "Prometheus",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "green",
+              "mode": "fixed"
+            },
+            "decimals": 0,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 18,
+          "y": 6
+        },
+        "id": 55,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.2.1",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(records_updated_total{job=\"kafka-mongo-hoursofoper\"}[$__range]))",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Total Updates",
+        "type": "stat"
+      },
+      {
+        "datasource": "Prometheus",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "green",
+              "mode": "fixed"
+            },
+            "decimals": 0,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 3,
+          "x": 21,
+          "y": 6
+        },
+        "id": 56,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.2.1",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(records_deleted_total{job=\"kafka-mongo-hoursofoper\"}[$__range]))",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Total Deletes",
+        "type": "stat"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 3,
+          "x": 15,
+          "y": 10
+        },
+        "id": 66,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.2.1",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(kube_pod_container_status_restarts_total{namespace=\"atd-core-platform\", container=\"kafka-mongo-hoursofoper\"}[1m]))",
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Pod Restarts",
+        "type": "stat"
+      },
+      {
+        "alert": {
+          "alertRuleTags": {},
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  0
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "A",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "max"
+              },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "keep_state",
+          "for": "5m",
+          "frequency": "1m",
+          "handler": 1,
+          "message": "kafka-mongo-hoursofoper pods are restarting",
+          "name": "Pod Restarts alert",
+          "noDataState": "no_data",
+          "notifications": [
+            { "name": "Python ETL"}
+          ]
+        },
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 3,
+          "x": 18,
+          "y": 10
+        },
+        "id": 43,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "pluginVersion": "8.2.1",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(kube_pod_container_status_restarts_total{namespace=\"atd-core-platform\", container=\"kafka-mongo-hoursofoper\"}[1m])) by(pod)",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [
+          {
+            "colorMode": "critical",
+            "op": "gt",
+            "value": 0,
+            "visible": true
+          }
+        ],
+        "title": "Pod Restarts",
+        "type": "timeseries"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "text",
+              "mode": "fixed"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 3,
+          "x": 21,
+          "y": 10
+        },
+        "id": 57,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.2.1",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(kube_pod_container_status_ready{namespace=\"atd-core-platform\", container=\"kafka-mongo-hoursofoper\"})",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Pod Count",
+        "type": "stat"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "decimals": 0,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 50
+                },
+                {
+                  "color": "orange",
+                  "value": 500
+                },
+                {
+                  "color": "red",
+                  "value": 5000
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 3,
+          "x": 0,
+          "y": 11
+        },
+        "id": 47,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.2.1",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "current_lag{service=\"kafka-mongo-hoursofoper\"}",
+            "format": "table",
+            "instant": true,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "Current Lag",
+        "type": "stat"
+      },
+      {
+        "alert": {
+          "alertRuleTags": {},
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  10000
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "A",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "avg"
+              },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "keep_state",
+          "for": "5m",
+          "frequency": "1m",
+          "handler": 1,
+          "message": "Lag on kafka-mongo-hoursofoper is above 10,000",
+          "name": "Kafka Consumer Lag alert",
+          "noDataState": "no_data",
+          "notifications": [
+            { "name": "Python ETL"}
+          ]
+        },
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "light-yellow",
+              "mode": "thresholds"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 20,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "displayName": "Kafka Messages",
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "yellow",
+                  "value": 50
+                },
+                {
+                  "color": "orange",
+                  "value": 500
+                },
+                {
+                  "color": "red",
+                  "value": 5000
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 4,
+          "x": 3,
+          "y": 11
+        },
+        "id": 46,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "hidden",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "pluginVersion": "8.2.1",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "max(current_lag{service=\"kafka-mongo-hoursofoper\"})",
+            "format": "time_series",
+            "instant": false,
+            "interval": "",
+            "intervalFactor": 1,
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [
+          {
+            "colorMode": "critical",
+            "op": "gt",
+            "value": 10000,
+            "visible": true
+          }
+        ],
+        "title": "Consumer Lag",
+        "type": "timeseries"
+      },
+      {
+        "datasource": "Prometheus",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "red",
+              "mode": "fixed"
+            },
+            "decimals": 0,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 3,
+          "x": 8,
+          "y": 11
+        },
+        "id": 50,
+        "options": {
+          "colorMode": "value",
+          "graphMode": "none",
+          "justifyMode": "auto",
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "text": {},
+          "textMode": "auto"
+        },
+        "pluginVersion": "8.2.1",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(mongodb_errors_total{job=\"kafka-mongo-hoursofoper\"}[$__range]))",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "title": "MongoDB Errors",
+        "type": "stat"
+      },
+      {
+        "alert": {
+          "alertRuleTags": {},
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  0
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "A",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "max"
+              },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "keep_state",
+          "for": "5m",
+          "frequency": "1m",
+          "handler": 1,
+          "message": "MongoDB errors in kafka-mongo-hoursofoper",
+          "name": "MongoDB Errors alert",
+          "noDataState": "no_data",
+          "notifications": [
+            { "name": "Python ETL"}
+          ]
+        },
+        "datasource": "Prometheus",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "red",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "axisSoftMax": 25,
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 20,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "text",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 1
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 5,
+          "w": 3,
+          "x": 11,
+          "y": 11
+        },
+        "id": 27,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "hidden",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(increase(mongodb_errors_total{job=\"kafka-mongo-hoursofoper\"}[1m]))",
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [
+          {
+            "colorMode": "critical",
+            "op": "gt",
+            "value": 0,
+            "visible": true
+          }
+        ],
+        "title": "MongoDB Errors",
+        "type": "timeseries"
+      },
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 16
+        },
+        "id": 63,
+        "panels": [],
+        "title": "Resource Utilization",
+        "type": "row"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": null,
+        "fill": 2,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 5,
+          "x": 0,
+          "y": 17
+        },
+        "hiddenSeries": false,
+        "id": 32,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null as zero",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "8.2.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:125",
+            "alias": "limit",
+            "color": "#FF9830",
+            "fill": 0,
+            "points": false
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(\n    node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace=\"atd-core-platform\"}\n  * on(namespace,pod)\n    group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{namespace=\"atd-core-platform\", workload=\"kafka-mongo-hoursofoper\"}\n) by (pod)\n",
+            "hide": false,
+            "interval": "",
+            "legendFormat": "{{pod}}",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "kube_pod_container_resource_limits{job=\"kube-state-metrics\", namespace=\"atd-core-platform\", pod=~\"kafka-mongo-hoursofoper.*\", resource=\"cpu\"}\n",
+            "hide": false,
+            "interval": "",
+            "legendFormat": "limit",
+            "refId": "B"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "CPU Usage",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:347",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:348",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "alert": {
+          "alertRuleTags": {},
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  0.95
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "A",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "avg"
+              },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "keep_state",
+          "for": "5m",
+          "frequency": "1m",
+          "handler": 1,
+          "message": "CPU Utilization for kafka-mongo-hoursofoper is above 95%",
+          "name": "CPU Percentage alert",
+          "noDataState": "no_data",
+          "notifications": [
+            { "name": "Python ETL"}
+          ]
+        },
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "fill": 2,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 5,
+          "x": 5,
+          "y": 17
+        },
+        "hiddenSeries": false,
+        "id": 37,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null as zero",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "8.2.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:125",
+            "alias": "limit",
+            "color": "#FF9830",
+            "fill": 0,
+            "points": false
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(\n    node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace=\"atd-core-platform\"}\n  * on(namespace,pod)\n    group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{namespace=\"atd-core-platform\", workload=\"kafka-mongo-hoursofoper\"}\n) by (pod)\n/sum(\n    kube_pod_container_resource_requests{job=\"kube-state-metrics\", namespace=\"atd-core-platform\", resource=\"cpu\"}\n  * on(namespace,pod)\n    group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{namespace=\"atd-core-platform\", workload=\"kafka-mongo-hoursofoper\"}\n) by (pod)",
+            "hide": false,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [
+          {
+            "colorMode": "critical",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 0.95,
+            "visible": true
+          }
+        ],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "CPU Percentage",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:347",
+            "format": "percentunit",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:348",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": null,
+        "fill": 2,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 5,
+          "x": 10,
+          "y": 17
+        },
+        "hiddenSeries": false,
+        "id": 35,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null as zero",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "8.2.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:339",
+            "alias": "limit",
+            "color": "#FF9830",
+            "fill": 0,
+            "points": false
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(\n    container_memory_working_set_bytes{namespace=\"atd-core-platform\", container!=\"\", image!=\"\"}\n  * on(namespace,pod)\n    group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{namespace=\"atd-core-platform\", workload=\"kafka-mongo-hoursofoper\"}\n) by (pod)",
+            "hide": false,
+            "interval": "",
+            "legendFormat": "{{pod}}",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "kube_pod_container_resource_limits{job=\"kube-state-metrics\", namespace=\"atd-core-platform\", pod=~\"kafka-mongo-hoursofoper.*\", resource=\"memory\"}",
+            "hide": false,
+            "interval": "",
+            "legendFormat": "limit",
+            "refId": "B"
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Memory Usage",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:207",
+            "format": "bytes",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": "0",
+            "show": true
+          },
+          {
+            "$$hashKey": "object:208",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "alert": {
+          "alertRuleTags": {},
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  0.95
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "A",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "avg"
+              },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "keep_state",
+          "for": "5m",
+          "frequency": "1m",
+          "handler": 1,
+          "message": "Memory Utilization for kafka-mongo-hoursofoper is above 95%",
+          "name": "Memory Percentage alert",
+          "noDataState": "no_data",
+          "notifications": [
+            { "name": "Python ETL"}
+          ]
+        },
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percentunit"
+          },
+          "overrides": []
+        },
+        "fill": 2,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 7,
+          "w": 5,
+          "x": 15,
+          "y": 17
+        },
+        "hiddenSeries": false,
+        "id": 38,
+        "legend": {
+          "avg": false,
+          "current": false,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 2,
+        "nullPointMode": "null as zero",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "8.2.1",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [
+          {
+            "$$hashKey": "object:125",
+            "alias": "limit",
+            "color": "#FF9830",
+            "fill": 0,
+            "points": false
+          }
+        ],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(\n    container_memory_working_set_bytes{namespace=\"atd-core-platform\", container!=\"\", image!=\"\"}\n  * on(namespace,pod)\n    group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{namespace=\"atd-core-platform\", workload=\"kafka-mongo-hoursofoper\"}\n) by (pod)\n/sum(\n    kube_pod_container_resource_requests{job=\"kube-state-metrics\", namespace=\"atd-core-platform\", resource=\"memory\"}\n  * on(namespace,pod)\n    group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{namespace=\"atd-core-platform\", workload=\"kafka-mongo-hoursofoper\"}\n) by (pod)",
+            "hide": false,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          }
+        ],
+        "thresholds": [
+          {
+            "colorMode": "critical",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 0.95,
+            "visible": true
+          }
+        ],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Memory Percentage",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:347",
+            "format": "percentunit",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:348",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 100,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 2,
+              "pointSize": 2,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "normal"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "Bps"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 4,
+          "x": 20,
+          "y": 17
+        },
+        "id": 40,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "(sum(irate(container_network_receive_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", namespace=\"atd-core-platform\"}[$__rate_interval])\n* on (namespace,pod)\ngroup_left(workload,workload_type) namespace_workload_pod:kube_pod_owner:relabel{namespace=\"atd-core-platform\", workload=~\"kafka-mongo-hoursofoper\"}) by (pod))\n",
+            "interval": "",
+            "legendFormat": "{{pod}}",
+            "refId": "A"
+          }
+        ],
+        "title": "Recieve Bandwidth",
+        "type": "timeseries"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto",
+              "filterable": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "CPU Limit %"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "percentunit"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 10,
+          "x": 0,
+          "y": 24
+        },
+        "id": 34,
+        "options": {
+          "frameIndex": 3,
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "8.2.1",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(\n    node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace=\"atd-core-platform\"}\n  * on(namespace,pod)\n    group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{namespace=\"atd-core-platform\", workload=\"kafka-mongo-hoursofoper\"}\n) by (pod)",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "sum(\n    kube_pod_container_resource_requests{job=\"kube-state-metrics\", namespace=\"atd-core-platform\", resource=\"cpu\"}\n  * on(namespace,pod)\n    group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{namespace=\"atd-core-platform\", workload=\"kafka-mongo-hoursofoper\"}\n) by (pod)",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "B"
+          },
+          {
+            "exemplar": true,
+            "expr": "sum(\n    node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace=\"atd-core-platform\"}\n  * on(namespace,pod)\n    group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{namespace=\"atd-core-platform\", workload=\"kafka-mongo-hoursofoper\"}\n) by (pod)\n/sum(\n    kube_pod_container_resource_requests{job=\"kube-state-metrics\", namespace=\"atd-core-platform\", resource=\"cpu\"}\n  * on(namespace,pod)\n    group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{namespace=\"atd-core-platform\", workload=\"kafka-mongo-hoursofoper\"}\n) by (pod)",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "C"
+          }
+        ],
+        "title": "CPU Quota",
+        "transformations": [
+          {
+            "id": "merge",
+            "options": {}
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time": true,
+                "{pod=\"kafka-mongo-hoursofoper-5d8bcb746-5nc8g\"}": true
+              },
+              "indexByName": {},
+              "renameByName": {
+                "Time": "",
+                "Value #A": "CPU Usage",
+                "Value #B": "CPU Limit",
+                "Value #C": "CPU Limit %",
+                "pod": ""
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {}
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto",
+              "filterable": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Memory Limit %"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "percentunit"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Memory Usage"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Memory Limit"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "bytes"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 10,
+          "x": 10,
+          "y": 24
+        },
+        "id": 36,
+        "options": {
+          "frameIndex": 3,
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "8.2.1",
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "sum(\n    container_memory_working_set_bytes{namespace=\"atd-core-platform\", container!=\"\", image!=\"\"}\n  * on(namespace,pod)\n    group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{namespace=\"atd-core-platform\", workload=\"kafka-mongo-hoursofoper\"}\n) by (pod)",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "A"
+          },
+          {
+            "exemplar": true,
+            "expr": "sum(\n    kube_pod_container_resource_requests{job=\"kube-state-metrics\", namespace=\"atd-core-platform\", resource=\"memory\"}\n  * on(namespace,pod)\n    group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{namespace=\"atd-core-platform\", workload=\"kafka-mongo-hoursofoper\"}\n) by (pod)",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "B"
+          },
+          {
+            "exemplar": true,
+            "expr": "sum(\n    container_memory_working_set_bytes{namespace=\"atd-core-platform\", container!=\"\", image!=\"\"}\n  * on(namespace,pod)\n    group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{namespace=\"atd-core-platform\", workload=\"kafka-mongo-hoursofoper\"}\n) by (pod)\n/sum(\n    kube_pod_container_resource_requests{job=\"kube-state-metrics\", namespace=\"atd-core-platform\", resource=\"memory\"}\n  * on(namespace,pod)\n    group_left(workload, workload_type) namespace_workload_pod:kube_pod_owner:relabel{namespace=\"atd-core-platform\", workload=\"kafka-mongo-hoursofoper\"}\n) by (pod)",
+            "format": "table",
+            "hide": false,
+            "instant": true,
+            "interval": "",
+            "legendFormat": "",
+            "refId": "C"
+          }
+        ],
+        "title": "Memory Quota",
+        "transformations": [
+          {
+            "id": "merge",
+            "options": {}
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Time": true,
+                "{pod=\"kafka-mongo-hoursofoper-5d8bcb746-5nc8g\"}": true
+              },
+              "indexByName": {},
+              "renameByName": {
+                "Time": "",
+                "Value #A": "Memory Usage",
+                "Value #B": "Memory Limit",
+                "Value #C": "Memory Limit %",
+                "pod": ""
+              }
+            }
+          },
+          {
+            "id": "organize",
+            "options": {}
+          }
+        ],
+        "type": "table"
+      },
+      {
+        "datasource": null,
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 100,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 2,
+              "pointSize": 2,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "never",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "normal"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "Bps"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 4,
+          "x": 20,
+          "y": 24
+        },
+        "id": 41,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "targets": [
+          {
+            "exemplar": true,
+            "expr": "(sum(irate(container_network_transmit_bytes_total{job=\"kubelet\", metrics_path=\"/metrics/cadvisor\", namespace=\"atd-core-platform\"}[$__rate_interval])\n* on (namespace,pod)\ngroup_left(workload,workload_type) namespace_workload_pod:kube_pod_owner:relabel{namespace=\"atd-core-platform\", workload=~\"kafka-mongo-hoursofoper\"}) by (pod))\n",
+            "interval": "",
+            "legendFormat": "{{pod}}",
+            "refId": "A"
+          }
+        ],
+        "title": "Transmit Bandwidth",
+        "type": "timeseries"
+      },
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 31
+        },
+        "id": 61,
+        "panels": [],
+        "title": "Logs",
+        "type": "row"
+      },
+      {
+        "datasource": "Loki-1",
+        "gridPos": {
+          "h": 16,
+          "w": 24,
+          "x": 0,
+          "y": 32
+        },
+        "id": 30,
+        "options": {
+          "dedupStrategy": "none",
+          "enableLogDetails": true,
+          "prettifyLogMessage": false,
+          "showCommonLabels": false,
+          "showLabels": false,
+          "showTime": false,
+          "sortOrder": "Descending",
+          "wrapLogMessage": false
+        },
+        "targets": [
+          {
+            "expr": "{job=\"atd-core-platform/kafka-mongo-hoursofoper\"}",
+            "refId": "A"
+          }
+        ],
+        "title": "Logs",
+        "type": "logs"
+      }
+    ],
+    "refresh": "10s",
+    "schemaVersion": 31,
+    "style": "dark",
+    "tags": [
+      "python"
+    ],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-3h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ]
+    },
+    "timezone": "",
+    "title": "kafka-mongo-hoursofoper-PythonService-Metrics",
+    "uid": "kafka-mongo-hoursofoper",
+    "version": 1
+  }

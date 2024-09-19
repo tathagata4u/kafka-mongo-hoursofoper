@@ -1,0 +1,176 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ServiceName
+  labels:
+    app: ServiceName
+    deployon: "dsr"
+spec:
+  replicas: replace_replicas
+  selector:
+    matchLabels:
+      app: ServiceName
+  template:
+    metadata:
+      labels:
+        app: ServiceName
+        deployon: "dsr"
+        nwpolicy: kafka-mongo-hoursofoper
+    spec:
+      affinity:
+        podAntiAffinity:  
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - ServiceName
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: ServiceName
+        image: image_to_be_deployed
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 7069
+        resources:
+          requests:
+            memory: 500Mi
+            cpu: "0.5"
+          limits:
+            memory: 500Mi
+            cpu: "0.5"
+        env:
+          - name: LOGGING_LEVEL
+            valueFrom:
+              configMapKeyRef:
+                name: kafka-mongo-hoursofoper-configmap
+                key: replace_logical_env.logging.level
+          - name: GROUP_ID
+            valueFrom:
+              configMapKeyRef:
+                name: kafka-mongo-hoursofoper-configmap
+                key: kafka.group.id
+          - name: MONGO_BULKSIZE
+            valueFrom:
+              configMapKeyRef:
+                name: kafka-mongo-hoursofoper-configmap
+                key: replace_logical_env.mongodb.bulksize
+          - name: MONGO_URL
+            valueFrom:
+              secretKeyRef:
+                name: mongo-datastream-urls
+                key: fndconfig.mongo.url
+          - name: MONGO_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: kafka-mongo-hoursofoper-configmap
+                key: replace_logical_env.mongodb.database
+          - name: MONGO_COLLECTION
+            valueFrom:
+              configMapKeyRef:
+                name: kafka-mongo-hoursofoper-configmap
+                key: mongodb.collection
+          - name: MONGO_QUERYFIELD
+            valueFrom:
+              configMapKeyRef:
+                name: kafka-mongo-hoursofoper-configmap
+                key: mongodb.queryfield
+          - name: MONGO_DATEFIELDS
+            valueFrom:
+              configMapKeyRef:
+                name: kafka-mongo-hoursofoper-configmap
+                key: mongodb.datefields
+          - name: MAX_RETRIES
+            valueFrom:
+              configMapKeyRef:
+                name: kafka-mongo-hoursofoper-configmap
+                key: max.retries
+          - name: ORACLE_TABLE
+            valueFrom:
+              configMapKeyRef:
+                name: kafka-mongo-hoursofoper-configmap
+                key: replace_logical_env.oracle.table
+          - name: TIMEZONE_FROM
+            valueFrom:
+              configMapKeyRef:
+                name: kafka-mongo-hoursofoper-configmap
+                key: timezone.from
+          - name: TIMEZONE_TO
+            valueFrom:
+              configMapKeyRef:
+                name: kafka-mongo-hoursofoper-configmap
+                key: timezone.to
+          - name: DATETIME_FORMAT
+            valueFrom:
+              configMapKeyRef:
+                name: kafka-mongo-hoursofoper-configmap
+                key: datetime.format
+          - name: BOOTSTRAP_SERVER_URL
+            valueFrom:
+              configMapKeyRef:
+                name: kafka-mongo-hoursofoper-configmap
+                key: replace_logical_env.kafka.bootstrap.server.url
+          - name: KAFKA_TOPIC
+            valueFrom:
+              configMapKeyRef:
+                name: kafka-mongo-hoursofoper-configmap
+                key: replace_logical_env.kafka.topic
+          - name: KAFKA_SECURITY_PROTOCOL
+            valueFrom:
+              configMapKeyRef:
+                name: kafka-mongo-hoursofoper-configmap
+                key: kafka.security.protocol
+          - name: KAFKA_SASL_MECHANISMS
+            valueFrom:
+              configMapKeyRef:
+                name: kafka-mongo-hoursofoper-configmap
+                key: kafka.sasl.mechanisms
+          - name: CONFLUENT_KAFKA_USER
+            valueFrom:
+              secretKeyRef:
+                name: confluent-cloud-secret
+                key: confluent.api.key
+          - name: CONFLUENT_KAFKA_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: confluent-cloud-secret
+                key: confluent.api.secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: SvcName
+  labels:
+    app: ServiceName
+    k8s-app: kafka-mongo-hoursofoper
+spec:
+  selector:
+    app: ServiceName
+  type: ClusterIP
+  ports:
+  - port: 7069
+    name: web
+    targetPort: 7069
+---
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: kafka-mongo-hoursofoper
+spec:
+  policyTypes:
+  - Ingress
+  podSelector:
+    matchLabels:
+      nwpolicy: kafka-mongo-hoursofoper
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          nwpolicy: apigateway-access
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: monitoring
+---
